@@ -7,13 +7,20 @@
         }
 
         public function enregistrerFormulaire($obj){
-            if ($obj->getTypetape()=="email"){
-                $requete = "SELECT `mot de passe` FROM `User` WHERE `email`='".$obj->getIdentifiant()."'";
-            }else if ($obj->getTypetape()=="pseudo"){
-                $requete = "SELECT `mot de passe` FROM `User` WHERE `pseudo`='".$obj->getIdentifiant()."'";
-            }
+            if ($obj->getTypetape()!=""){
+                if ($obj->getTypetape()=="email"){
+                    $requete = "SELECT `mot de passe` FROM `User` WHERE `email`='".$obj->getIdentifiant()."'";
+                }else {
+                    $requete = "SELECT `mot de passe` FROM `User` WHERE `pseudo`='".$obj->getIdentifiant()."'";
+                }
 
-            $reponse=$this->dao->requeteMysql($requete);
+                $reponse=$this->dao->requeteMysql($requete);
+                if ($reponse[0]==$obj->getPassword()){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
         }
     }
 ?>

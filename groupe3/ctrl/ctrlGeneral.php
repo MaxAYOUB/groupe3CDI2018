@@ -20,7 +20,11 @@
         public function verifierAuthentification(){
             $this->user=new Compte($_POST);
             $verifAuthentification=$this->model->enregistrerFormulaire($this->user);
+            if ($verifAuthentification){
 
+            }else{
+                
+            }
         }
 
 

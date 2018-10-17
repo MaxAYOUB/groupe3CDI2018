@@ -2,6 +2,7 @@
     class ctrlGeneral{
         private $vue;
         private $model;
+        private $user;
 
         function __construct(){
             $this->vue=new viewGenerale();
@@ -9,23 +10,48 @@
         }
 
 
-        public function getConsoleAdmin(){
+        public function getForm(){
+            $this->view->afficherForm();
+        }
+
+        public function enregForm(){
+            $this->user=new user($_POST);
+            $enregistrement=$this->model->enregistrerFormulaire($this->user);
 
         }
 
-        public function gererAvatar(){
+        public function getModifierCompte(){
+            $this->view->afficherModifierCompte();
+        }
+
+        public function modifierCompte(){
+            $this->user=new cpte($_POST);
+            $enregistrement=$this->model->enregistrerFormulaire($this->user);
 
         }
 
-        public function gererCompte(){
+        public function getConnection(){
+            $this->view->afficherConnection();
+        }
+
+        public function getAuthentification(){
+            $this->view->afficherConnection();
+        }
+
+        public function verifierAuthentification(){
+            $this->user=new cpte($_POST);
+            $enregistrement=$this->model->enregistrerFormulaire($this->user);
 
         }
 
-        public function gererPassword(){
+
+
+
+        private function gererSession(){
 
         }
 
-        private function verifierUser(){
+        private function verifier(){
             
         }
     

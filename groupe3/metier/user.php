@@ -82,6 +82,7 @@ class User{
 	}
 	public function setAdministrateur($v){
 		$this->administrateur =$v;
+	}
 	
 	
 /*

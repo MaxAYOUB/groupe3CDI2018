@@ -9,27 +9,6 @@
             $this->model=new modelGeneral();
         }
 
-
-        public function getForm(){
-            $this->view->afficherForm();
-        }
-
-        public function enregForm(){
-            $this->user=new user($_POST);
-            $enregistrement=$this->model->enregistrerFormulaire($this->user);
-
-        }
-
-        public function getModifierCompte(){
-            $this->view->afficherModifierCompte();
-        }
-
-        public function modifierCompte(){
-            $this->user=new cpte($_POST);
-            $enregistrement=$this->model->enregistrerFormulaire($this->user);
-
-        }
-
         public function getConnection(){
             $this->view->afficherConnection();
         }
@@ -39,16 +18,16 @@
         }
 
         public function verifierAuthentification(){
-            $this->user=new cpte($_POST);
-            $enregistrement=$this->model->enregistrerFormulaire($this->user);
+            $this->user=new Compte($_POST);
+            $verifAuthentification=$this->model->enregistrerFormulaire($this->user);
 
         }
 
 
 
 
-        private function gererSession(){
-
+        private function gererSession($obj){
+            
         }
 
         private function verifier(){

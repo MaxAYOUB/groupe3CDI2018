@@ -5,24 +5,16 @@
         }
 
 
-        public function getConsoleAdmin(){
+        public function afficherConnection(){
 
         }
 
-        public function gererAvatar(){
+        public function afficherConnectionOK(){
 
         }
 
-        public function gererCompte(){
+        public function afficherConnectionNotOK(){
 
-        }
-
-        public function gererPassword(){
-
-        }
-
-        private function verifierUser(){
-            
         }
     
     }

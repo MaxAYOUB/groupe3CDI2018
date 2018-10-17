@@ -22,19 +22,17 @@ if (isset($_GET['c']) && isset($_GET['m']) && isset($_GET['a'])){
 
 function __autoload($class_name = ""){
 	$repertoires = array(
-			"controllers/",
-			"models/",
-			"views/",
+			"ctrl/",
+			"model/",
+			"view/",
 			"system/",
 			"metiers/",
-			"Webservice/",
-			"DAO/",
-			"tests/"
+			"tests/",
+            "javaScript"
 	);
 	$modules= array(
-		"Modules/Contact/",
-		"Modules/Meteo/",
-		"Modules/fluxRss/",
+		"Modules/admin/",
+		"Modules/utilisateur/",
 		""
 	);
 	foreach($modules as $module){

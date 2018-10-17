@@ -46,4 +46,5 @@ function __autoload($class_name = ""){
 		}
 	}
 }
+echo "salut";
 ?>  

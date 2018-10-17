@@ -1,0 +1,145 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Socket.IO chat</title>
+    <style>
+    	#messages {
+    	height: 540px;
+    	background: violet;
+    	overflow: hidden;
+    	
+		}
+		
+		.message {
+		background: blue;
+    	color: white;
+    	font-size: 1rem;
+    	
+    	height: 25px;		
+		}
+		
+		.separator {
+		height: 5px;
+		background: white;
+		}
+    
+    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font: 13px Helvetica, Arial;
+        }
+
+        form {
+            background: #000;
+            padding: 3px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        form input {
+            border: 0;
+            padding: 10px;
+            width: 90%;
+            margin-right: .5%;
+        }
+
+        form button {
+            width: 9%;
+            background: rgb(130, 224, 255);
+            border: none;
+            padding: 10px;
+        }
+
+/*         #messages {
+            font-size: 4rem;
+            margin: 0;
+            padding: 0;
+            list-style-position: inside;    
+            height: 700px;
+    background-color:blueviolet;
+    /* overflow: hidden; */
+    overflow-y: scroll;
+        } */
+        
+
+        #messages li {
+            padding: 5px 10px;
+          
+        }
+
+        #messages li:nth-child(odd) {
+            background: #eee;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+    
+            <div id="messages"></div>
+  
+  
+    <form action="">
+        <input id="m" autocomplete="off" /><button>Send</button>
+    </form>
+
+
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+    	var div_nombre = 0;
+    	var lastmsg= false;
+    	var max = 25;
+        $(function () {
+            var socket = io();
+            $('form').submit(function () {
+                socket.emit('chat message', {'user'   : 'ben' ,
+                                             'message': $('#m').val() } );
+                $('#m').val('');
+                return false;
+            });
+            socket.on('chat message', function (msg) {
+            	
+            		div_nombre = div_nombre + 1;
+            		
+            		if(lastmsg = msg.user){
+            			$('#messages').append("<div class='separator' id = 'div_"+ div_nombre +"' ></div>");
+            			lastmsg = msg.user;
+            		}
+               
+                    $('#messages').append($("<div class= 'message' id = 'div_"+ div_nombre +"' >").text(msg.message));
+                                        
+                    var height = 0;
+                    $('#messages').each(function(i, value){
+                        height += parseInt($(this).height());
+                    });
+
+                    height += '';
+                    if (div_nombre > max){
+                    	
+                    	$('#messages').each(function(){ 
+                    		  var retour = $('.message').attr('id');
+                    		  console.log(retour);
+                    		  $('#' + retour).remove();
+                    		  div_nombre = div_nombre - 1;
+                    	});
+                    	
+                    }
+                    
+                    $('#messages').animate({scrollTop: height});
+                    
+                    //console.log(div_nombre);
+                    
+                    
+            });
+        });
+    </script>
+</body>
+</html>

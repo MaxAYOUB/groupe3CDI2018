@@ -1,19 +1,5 @@
 <?php 
 class Compte{
-   /*
- * EXPRESSIONS REGULIERES**
- */	
-	
-	private function isAlpha($val){
-		$regex = "/^[a-zA-Z\-\'\" 0-9]*$/";
-		return preg_match($regex,$val);
-	}
-	
-	private function isEmail($val){
-		$regex = "/^[0-9a-z._-]+@{1}[0-9a-z.-]{2,}[.]{1}[a-z]{2,5}$/i";
-		return preg_match($regex,$val);
-    }
-	
 /*
  * PROPRIETES
  */	
@@ -40,16 +26,16 @@ class Compte{
  * SETTERS
  */
 	public function setId_compte($v){
-	    $this->id_compte = isAlpha($v) ? $v : null;
+	    $this->id_compte = $this->isAlpha($v) ? $v : null;
 	}
 	public function setMotdepasse($v){
-		$this->motdepasse = isAlpha($v) ? $v : null;
+		$this->motdepasse = $this->isAlpha($v) ? $v : null;
 	}
 	public function setTypetape($v){
-		$this->typetape = isEmail($v) ? "email" : "pseudo";
+		$this->typetape = $this->isEmail($v) ? "email" : "pseudo";
 	}
 	public function setAdmin($v){
-		$this->admin = isAlpha($v) ? $v : null;
+		$this->admin = $this->isAlpha($v) ? $v : null;
 	}
 	public function setIdentifiant($v){
 		$this->identifiant = $v;
@@ -82,5 +68,19 @@ class Compte{
 		
 	}
 	
+   /*
+ * EXPRESSIONS REGULIERES**
+ */	
+	
+private function isAlpha($val){
+	$regex = "/^[a-zA-Z\-\'\" 0-9]*$/";
+	return preg_match($regex,$val);
+}
+
+private function isEmail($val){
+	$regex = "/^[0-9a-z._-]+@{1}[0-9a-z.-]{2,}[.]{1}[a-z]{2,5}$/i";
+	return preg_match($regex,$val);
+}
+
 }
 ?>

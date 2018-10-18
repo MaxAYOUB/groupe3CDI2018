@@ -5,7 +5,7 @@
         private $user;
 
         function __construct(){
-            $this->vue=new viewGenerale();
+            // $this->vue=new viewGenerale();
             $this->model=new modelGeneral();
         }
 
@@ -18,8 +18,14 @@
         }
 
         public function verifierAuthentification(){
-            $this->user=new Compte($_POST);
+            $a['identifiant']="maxime@gmail.com";
+            $a['identifiant']="max";
+            $a['motdepasse']="toulouse31";
+            $this->user=new Compte($a);
+            var_dump($this->user);
+            // $this->user=new Compte($_POST);
             $verifAuthentification=$this->model->enregistrerFormulaire($this->user);
+            var_dump($verifAuthentification);
             if ($verifAuthentification){
 
             }else{
@@ -30,13 +36,13 @@
 
 
 
-        private function gererSession($obj){
+        // private function gererSession($obj){
             
-        }
+        // }
 
-        private function verifier(){
+        // private function verifier(){
             
-        }
+        // }
     
     }
 ?>

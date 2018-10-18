@@ -14,9 +14,9 @@ if (isset($_GET['c']) && isset($_GET['m']) && isset($_GET['a'])){
 	$ctrl = new $v;
 	$ctrl->index();
 }else{
-	$v="CtrlContact";
+	$v="DAO_mysql";
 	$ctrl = new $v;
-	$ctrl->index();
+	$ctrl->bddQuery();
 	ini_set('safe_mode','Off');
 }
 
@@ -26,7 +26,7 @@ function __autoload($class_name = ""){
 			"model/",
 			"view/",
 			"system/",
-			"metiers/",
+			"metier/",
 			"tests/",
             "javaScript"
 	);

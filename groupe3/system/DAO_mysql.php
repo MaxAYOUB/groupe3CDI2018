@@ -1,11 +1,11 @@
 <?php
-    class modelGeneral{
+    class DAO_mysql{
         private $myBdd;
         private $config;
 
         function __construct(){
-            $this->bddConnection();
             $this->config = $this->configBdd();
+            $this->bddConnection();
         }
 
         public function bddConnection(){
@@ -24,11 +24,12 @@
         }
 
         public function bddDeconnexion(){
-            $this->myBdd->close();
+            // $this->myBdd->close();
         }
         
         public function bddQuery($sql){
     //         echo $sql;
+            // $sql="SELECT `mot_de_passe` FROM `User` WHERE `email`='maxime@gmail.com'";
             $data = array();
             if(!$result = $this->myBdd->query($sql)){
                 die("Erreur de BDD : {$this->myBdd->connect_errno}");
@@ -39,6 +40,7 @@
                     {
                         $data[] = $row;
                     }
+                    var_dump($data);
                     return $data;
                 }
                 else{
@@ -52,12 +54,12 @@
         }
 
 
-        private function bddConfig(){
+        private function ConfigBdd(){
             return $bdd = array(
                 'host'  =>  "localhost",
                 'user'  =>  "root",
                 'pass'  =>    "",
-                'database'=>    "appliGPS",
+                'database'=>    "appligps",
                 'charset'   =>  "utf8"
             );
         }
